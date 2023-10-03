@@ -97,7 +97,7 @@ public class SumoTraciConnection {
 	 */
 	public static final String TCP_NODELAY_PROPERTY = "io.sevengo.smart.traci4j.src.java.it.polito.appeal.traci.tcp_nodelay";
 
-	//private static final Logger log = LogManager.getLogger();
+	// private static final Logger log = LogManager.getLogger();
 	private static final Logger log = LoggerFactory.getLogger(SumoTraciConnection.class);
 
 	private String configFile;
@@ -159,11 +159,12 @@ public class SumoTraciConnection {
 	 * {@link #runServer()}.
 	 * 
 	 * @param configFile
-	 *            the file name of the SUMO XML configuration file
+	 *                   the file name of the SUMO XML configuration file
 	 * @param randomSeed
-	 *            the random seed for SUMO (passed with the --srand option); if
-	 *            different to -1, it overrides the value specified in the
-	 *            config file or, if absent, the system time
+	 *                   the random seed for SUMO (passed with the --srand option);
+	 *                   if
+	 *                   different to -1, it overrides the value specified in the
+	 *                   config file or, if absent, the system time
 	 */
 	public SumoTraciConnection(String configFile, int randomSeed) {
 		this.randomSeed = randomSeed;
@@ -182,11 +183,12 @@ public class SumoTraciConnection {
 	 *             format of the network file is not documented and subject to
 	 *             changes over time.
 	 * @param configFile
-	 *            the file name of the SUMO XML configuration file
+	 *                   the file name of the SUMO XML configuration file
 	 * @param randomSeed
-	 *            the random seed for SUMO (passed with the --srand option); if
-	 *            different to -1, it overrides the value specified in the
-	 *            config file or, if absent, the system time
+	 *                   the random seed for SUMO (passed with the --srand option);
+	 *                   if
+	 *                   different to -1, it overrides the value specified in the
+	 *                   config file or, if absent, the system time
 	 */
 	@Deprecated
 	public SumoTraciConnection(String configFile, int randomSeed, boolean useGeoOffset) {
@@ -204,10 +206,10 @@ public class SumoTraciConnection {
 	 * call to <code>runServer()</code>.
 	 * 
 	 * @param addr
-	 *            the IP address of the machine where SUMO runs
+	 *             the IP address of the machine where SUMO runs
 	 * @param port
-	 *            the TCP port SUMO is listening for commands (see --remote-port
-	 *            option)
+	 *             the TCP port SUMO is listening for commands (see --remote-port
+	 *             option)
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
@@ -224,11 +226,11 @@ public class SumoTraciConnection {
 	 * Adds a custom option to the SUMO command line before executing it.
 	 * 
 	 * @param option
-	 *            the option name, in long form (e.g. &quot;no-warnings&quot;
-	 *            instead of &quot;W&quot;) and without initial dashes
+	 *               the option name, in long form (e.g. &quot;no-warnings&quot;
+	 *               instead of &quot;W&quot;) and without initial dashes
 	 * @param value
-	 *            the option value, or <code>null</code> if the option has no
-	 *            value
+	 *               the option value, or <code>null</code> if the option has no
+	 *               value
 	 */
 	public void addOption(String option, String value) {
 		args.add("--" + option);
@@ -240,8 +242,9 @@ public class SumoTraciConnection {
 	 * Runs a SUMO instance and tries to connect at it.
 	 * 
 	 * @throws IOException
-	 *             if something wrong occurs while starting SUMO or connecting
-	 *             at it.
+	 *                              if something wrong occurs while starting SUMO or
+	 *                              connecting
+	 *                              at it.
 	 * @throws InterruptedException
 	 * 
 	 * @see {@link #runServer(boolean)}
@@ -254,10 +257,11 @@ public class SumoTraciConnection {
 	 * Runs a SUMO instance and tries to connect at it.
 	 * 
 	 * @param withGui
-	 *            Start sumo with gui or not
+	 *                Start sumo with gui or not
 	 * @throws IOException
-	 *             if something wrong occurs while starting SUMO or connecting
-	 *             at it.
+	 *                              if something wrong occurs while starting SUMO or
+	 *                              connecting
+	 *                              at it.
 	 * @throws InterruptedException
 	 * 
 	 * @see {@link #runServer()}
@@ -279,11 +283,11 @@ public class SumoTraciConnection {
 	 * TCP port. If also specified, checks that the SUMO process is present.
 	 * 
 	 * @param addr
-	 *            the address of the TraCI server
+	 *                the address of the TraCI server
 	 * @param port
-	 *            the TCP port of the TraCI server
+	 *                the TCP port of the TraCI server
 	 * @param process
-	 *            a reference to a {@link Process} object representing SUMO
+	 *                a reference to a {@link Process} object representing SUMO
 	 * @throws IOException
 	 * @throws InterruptedException
 	 */
@@ -345,7 +349,7 @@ public class SumoTraciConnection {
 	 * Forcibly set TCP_NODELAY_PROPERTY
 	 * 
 	 * @param on
-	 *            If true TCP_NODELAY will be turned on. Else turned off.
+	 *           If true TCP_NODELAY will be turned on. Else turned off.
 	 */
 	public void setTcpNoDelay(boolean on) {
 		System.setProperty(TCP_NODELAY_PROPERTY, String.valueOf(on));
@@ -474,8 +478,10 @@ public class SumoTraciConnection {
 			args.add(8, Integer.toString(randomSeed));
 		}
 
-		// this avoids validation of the input xml files; if SUMO_HOME is not set correctly,
-		// sumo will try to download the schema files from the web and may wait 30 seconds at startup
+		// this avoids validation of the input xml files; if SUMO_HOME is not set
+		// correctly,
+		// sumo will try to download the schema files from the web and may wait 30
+		// seconds at startup
 		// for the connection to time out.
 		args.add(9, "--xml-validation");
 		args.add(10, "never");
@@ -495,8 +501,7 @@ public class SumoTraciConnection {
 			} else {
 				throw e;
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
 
@@ -522,10 +527,11 @@ public class SumoTraciConnection {
 	 * exception, to allow to free all resources.
 	 * 
 	 * @throws IOException
-	 *             if the close command wasn't sent successfully
+	 *                              if the close command wasn't sent successfully
 	 * @throws InterruptedException
-	 *             if the current thread was interrupted while waiting for SUMO
-	 *             to close.
+	 *                              if the current thread was interrupted while
+	 *                              waiting for SUMO
+	 *                              to close.
 	 */
 	public void close() throws IOException, InterruptedException {
 		/*
@@ -571,7 +577,8 @@ public class SumoTraciConnection {
 	 * @return the boundaries of the network
 	 * 
 	 * @throws IOException
-	 *             if something wrong happened while sending the TraCI command.
+	 *                     if something wrong happened while sending the TraCI
+	 *                     command.
 	 */
 	public Rectangle2D queryBounds() throws IOException {
 		if (isClosed())
@@ -585,9 +592,11 @@ public class SumoTraciConnection {
 	 * {@link VehicleLifecycleObserver} instances.
 	 * 
 	 * @throws IOException
-	 *             if something wrong happened while sending the TraCI command.
+	 *                               if something wrong happened while sending the
+	 *                               TraCI command.
 	 * @throws IllegalStateException
-	 *             if the method is called when the connection is closed
+	 *                               if the method is called when the connection is
+	 *                               closed
 	 */
 	public void nextSimStep() throws IOException, IllegalStateException {
 		if (isClosed())
@@ -885,7 +894,7 @@ public class SumoTraciConnection {
 	 * Set the duration of a step
 	 * 
 	 * @param steplength
-	 *            the time in ms
+	 *                   the time in ms
 	 */
 	public void setStepLength(int steplength) {
 		this.steplength = steplength;

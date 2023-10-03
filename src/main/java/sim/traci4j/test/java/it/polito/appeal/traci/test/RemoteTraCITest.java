@@ -37,9 +37,8 @@ import org.slf4j.LoggerFactory;
 @SuppressWarnings("javadoc")
 public class RemoteTraCITest {
 
-    //private Logger log = LogManager.getLogger();
+    // private Logger log = LogManager.getLogger();
     private static final Logger log = LoggerFactory.getLogger(RemoteTraCITest.class);
-
 
     private Process sumoProcess;
 
@@ -56,16 +55,19 @@ public class RemoteTraCITest {
 
         // Issue #20 (since version 0.24.0 it was always sumo.exe)
         String exe64 = exe;
-        if (System.getProperty(SumoTraciConnection.OS_ARCH_PROPERTY).contains("64") && System.getProperty(SumoTraciConnection.OS_NAME_PROPERTY).contains("Win")) {
+        if (System.getProperty(SumoTraciConnection.OS_ARCH_PROPERTY).contains("64")
+                && System.getProperty(SumoTraciConnection.OS_NAME_PROPERTY).contains("Win")) {
             exe64 += "64";
         }
 
-        String[] args = new String[]{
+        String[] args = new String[] {
                 exe64,
                 "-c", "test/resources/sumo_maps/variable_speed_signs/test.sumo.cfg",
                 "--remote-port", Integer.toString(PORT),
-                // this avoids validation of the input xml files; if SUMO_HOME is not set correctly,
-                // sumo will try to download the schema files from the web and may wait 30 seconds at startup
+                // this avoids validation of the input xml files; if SUMO_HOME is not set
+                // correctly,
+                // sumo will try to download the schema files from the web and may wait 30
+                // seconds at startup
                 // for the connection to time out.
                 "--xml-validation", "never"
         };

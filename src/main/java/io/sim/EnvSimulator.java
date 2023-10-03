@@ -5,20 +5,20 @@ import java.io.IOException;
 import de.tudresden.sumo.objects.SumoColor;
 import it.polito.appeal.traci.SumoTraciConnection;
 
-public class EnvSimulator extends Thread{
+public class EnvSimulator extends Thread {
 
-    private SumoTraciConnection sumo;
+	private SumoTraciConnection sumo;
 
-    public EnvSimulator(){
+	public EnvSimulator() {
 
-    }
+	}
 
-    public void run(){
+	public void run() {
 
 		/* SUMO */
-		String sumo_bin = "sumo-gui";		
+		String sumo_bin = "sumo-gui";
 		String config_file = "map/map.sumo.cfg";
-		
+
 		// Sumo connection
 		this.sumo = new SumoTraciConnection(sumo_bin, config_file);
 		sumo.addOption("start", "1"); // auto-run on GUI show
@@ -27,7 +27,7 @@ public class EnvSimulator extends Thread{
 		try {
 			sumo.runServer(12345);
 
-			Itinerary i1 = new Itinerary("data/dados2.xml", "0");
+			Itinerary i1 = new Itinerary("data/dados.xml", "0");
 
 			if (i1.isOn()) {
 
@@ -38,14 +38,14 @@ public class EnvSimulator extends Thread{
 				int personCapacity = 1;
 				int personNumber = 1;
 				SumoColor green = new SumoColor(0, 255, 0, 126);
-				Auto a1 = new Auto(true, "CAR1", green,"D1", sumo, 500, fuelType, fuelPreferential, fuelPrice, personCapacity, personNumber);
+				Auto a1 = new Auto(true, "CAR1", green, "D1", sumo, 500, fuelType, fuelPreferential, fuelPrice,
+						personCapacity, personNumber);
 				TransportService tS1 = new TransportService(true, "CAR1", i1, a1, sumo);
 				tS1.start();
-                Thread.sleep(5000);
+				Thread.sleep(5000);
 				a1.start();
 			}
 
-		
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		} catch (InterruptedException e) {
@@ -54,6 +54,6 @@ public class EnvSimulator extends Thread{
 			e.printStackTrace();
 		}
 
-    }
+	}
 
 }
