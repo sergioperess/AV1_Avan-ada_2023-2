@@ -30,7 +30,7 @@ import java.util.Map;
  * corresponding variables that can be read. Queries for those variables can be
  * obtained via {@link #getReadQuery(Enum)} or {@link #getAllReadQueries()}.
  * <p>
- * If a subclass has at least one read query, it will have an own {@link Enum} 
+ * If a subclass has at least one read query, it will have an own {@link Enum}
  * (either nested or in a separate file) that lists all its read queries.
  * 
  * @author Enrico Gueli &lt;enrico.gueli@polito.it&gt;
@@ -39,9 +39,9 @@ import java.util.Map;
  */
 public abstract class TraciObject<E extends Enum<E>> {
 	private final String id;
-	
+
 	private final EnumMap<E, ReadObjectVarQuery<?>> readQueries;
-	
+
 	/**
 	 * Constructor for the SUMO object.
 	 * <p>
@@ -67,33 +67,33 @@ public abstract class TraciObject<E extends Enum<E>> {
 	 * well as this one.
 	 * 
 	 * @param id
-	 *            the string ID of the object, retrieved from SUMO
+	 *                  the string ID of the object, retrieved from SUMO
 	 * @param enumClass
-	 *            the class type of the variable list enum
+	 *                  the class type of the variable list enum
 	 */
 	protected TraciObject(String id, Class<E> enumClass) {
 		this.id = id;
 		readQueries = new EnumMap<E, ReadObjectVarQuery<?>>(enumClass);
 	}
-	
+
 	/**
 	 * Adds a read query to the list of readable queries. It should be called
 	 * by the subclass's constructor.
 	 * 
 	 * @param variable the enum instance of the variable
-	 * @param query the corresponding {@link ReadObjectVarQuery} instance
+	 * @param query    the corresponding {@link ReadObjectVarQuery} instance
 	 */
 	protected void addReadQuery(E variable, ReadObjectVarQuery<?> query) {
 		readQueries.put(variable, query);
 	}
-	
+
 	/**
 	 * @return the string ID of the SUMO object this instance refers to.
 	 */
 	public String getID() {
 		return id;
 	}
-	
+
 	/**
 	 * @param variable
 	 * @return a "read variable" query for the corresponding variable.
@@ -101,7 +101,7 @@ public abstract class TraciObject<E extends Enum<E>> {
 	public ReadObjectVarQuery<?> getReadQuery(E variable) {
 		return readQueries.get(variable);
 	}
-	
+
 	/**
 	 * @return a map of all the available read variables, along with their
 	 *         query object.
@@ -109,28 +109,29 @@ public abstract class TraciObject<E extends Enum<E>> {
 	public Map<E, ReadObjectVarQuery<?>> getAllReadQueries() {
 		return Collections.unmodifiableMap(readQueries);
 	}
-	
+
 	/**
 	 * Returns the output of {@link #getID()}.
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return getID();
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return getID().hashCode();
 	}
-	
+
 	@Override
 	public boolean equals(Object other) {
-		if (other == null) 
+		if (other == null)
 			return false;
-		if (other == this) 
+		if (other == this)
 			return true;
-		if (!(other instanceof TraciObject<?>)) 
+		if (!(other instanceof TraciObject<?>))
 			return false;
 		TraciObject<?> that = (TraciObject<?>) other;
 		return getID().equals(that.getID());
@@ -138,7 +139,7 @@ public abstract class TraciObject<E extends Enum<E>> {
 
 	/**
 	 * Clears all the read queries' stored values, therefore forcing all
-	 * subsequent queries to make a TraCI transaction. 
+	 * subsequent queries to make a TraCI transaction.
 	 */
 	public void clearCache() {
 		for (ReadObjectVarQuery<?> q : getAllReadQueries().values())

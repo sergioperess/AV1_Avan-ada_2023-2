@@ -5,7 +5,7 @@ import java.net.InetAddress;
 import java.util.Collection;
 
 import it.polito.appeal.traci.SumoTraciConnection;
-import de.tudresden.sumo.cmd.Vehicle;
+import de.tudresden.sumo.cmd.Route;
 
 public class Simula extends Thread {
     private SumoTraciConnection sumo;
@@ -35,15 +35,17 @@ public class Simula extends Thread {
 
     }
 
-    public int numVeiculos() {
-        try {
-            Collection<Vehicle> vehicles = sumo.getVehicleRepository().getAll().values();
-            numVeiculos = vehicles.size();
-            return numVeiculos;
-        } catch (Exception e) {
-            e. printStackTrace();
-        }
-
-    }
+    /*
+     * public int numVeiculos() {
+     * try {
+     * Collection<Vehicle> vehicles = sumo.getRouteRepository().getAll().values();
+     * numVeiculos = vehicles.size();
+     * return numVeiculos;
+     * } catch (Exception e) {
+     * e.printStackTrace();
+     * }S
+     * 
+     * }
+     */
 
 }

@@ -1,11 +1,17 @@
 package sim.traci4j.src.java.it.polito.appeal.traci;
 
-public class Car {
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 
-    private int Id;
+public class Car extends Vehicle {
 
-    public Car(int Id) {
-        Id = this.Id;
+    private static DataInputStream dis;
+    private static DataOutputStream dos;
+    private static String Id;
+
+    public Car() {
+
+        super(dis, dos, Id, null, null);
 
     }
 }

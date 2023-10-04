@@ -11,6 +11,7 @@ import java.util.Collection;
 
 public class Routes extends SumoTraciConnection {
     private ArrayList<Route> rotas = new ArrayList();
+    private SumoTraciConnection sumo;
 
     public Routes() {
         super("sumo-gui", "map2/map3.sumo.cfg");
