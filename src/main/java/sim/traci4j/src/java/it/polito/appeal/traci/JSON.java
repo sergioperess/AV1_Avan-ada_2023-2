@@ -33,14 +33,20 @@ public class JSON {
         // Objeto JSON
         JSONObject objetoJSON = new JSONObject();
 
-        objetoJSON.put("Nome", "Sérgio");
-        objetoJSON.put("Sobrenome", "Reiiiiii");
-        objetoJSON.put("CPF", "123.456.789-12");
-        objetoJSON.put("Signo", "Touro");
+        objetoJSON.put("Timestamp", "Sérgio");
+        objetoJSON.put("ID Car", "Reiiiiii");
+        objetoJSON.put("ID Route", "123.456.789-12");
+        objetoJSON.put("Speed", "Touro");
+        objetoJSON.put("Distance", "Touro");
+        objetoJSON.put("FuelConsumption", "Touro");
+        objetoJSON.put("FuelType", "Gasolina");
+        objetoJSON.put("CO2Emission", "Touro");
+        objetoJSON.put("Longitede(Lon)", "Touro");
+        objetoJSON.put("Latidude(Lat)", "Touro");
 
         try {
             // criar o arquivo com o nome dele
-            file = new FileWriter("Dados_do_Banco2.json");
+            file = new FileWriter("Banco_de_dados.json");
             // escrever o objeto json no arquivo
             file.write(objetoJSON.toJSONString());
             file.close();

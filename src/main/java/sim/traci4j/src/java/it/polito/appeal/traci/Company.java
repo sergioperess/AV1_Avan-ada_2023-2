@@ -13,14 +13,14 @@ public class Company {
     private ExecutorService executor = Executors.newCachedThreadPool();
 
     // Rotas disponiveis para executar
-    private ArrayList<String> rotasDisp = new ArrayList();
+    private ArrayList<Routes> rotasDisp = new ArrayList();
     // Rotas que estão sendo executadas
-    private ArrayList<String> rotasExe = new ArrayList();
+    private ArrayList<Routes> rotasExe = new ArrayList();
     // Rotas executadas
-    private ArrayList<String> rotasTer = new ArrayList();
+    private ArrayList<Routes> rotasTer = new ArrayList();
 
     // Rotas a serem executadas
-    private void routeQueue(String rota) {
+    private void routeQueue(Routes rota) {
         Runnable r1 = () -> {
 
             aquire();
@@ -36,7 +36,7 @@ public class Company {
     }
 
     // Rotas que estçao sendo executadas
-    private void routeExecuting(String rota) {
+    private void routeExecuting(Routes rota) {
         Runnable r2 = () -> {
             aquire();
 
@@ -51,7 +51,7 @@ public class Company {
     }
 
     // Rotas que ja foram executadas
-    private void routeExecuted(String rota) {
+    private void routeExecuted(Routes rota) {
         Runnable r3 = () -> {
             aquire();
 

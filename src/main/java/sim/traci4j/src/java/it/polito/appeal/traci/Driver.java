@@ -1,6 +1,15 @@
 package sim.traci4j.src.java.it.polito.appeal.traci;
 
+import java.util.ArrayList;
+
 public class Driver extends Thread {
+
+    private Company company;
+    private Car carro;
+    private static double preçoGasolina = 5.87;
+    private ArrayList<Routes> proximasRotas;
+    private ArrayList<Routes> execucaoRotas;
+
     private Banco banco;
     private Conta conta;
     private double valor = 200; // saques de R$ 200,00
