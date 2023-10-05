@@ -15,11 +15,22 @@ public class Driver extends Thread {
     private double valor = 200; // saques de R$ 200,00
     private double saques = 0;
 
-    public Driver(String _nome, Banco _banco, Conta _conta) {
-        super(_nome);
-        this.banco = _banco;
-        this.conta = _conta;
+    public Driver(Company _company, Car _carro) {
+        this.company = _company;
+        this.carro = _carro;
+        this.proximasRotas = new ArrayList<Routes>();
+        this.execucaoRotas = new ArrayList<Routes>();
 
+    }
+
+    // Método para testar se os drivers fizeram suas rotas
+    public boolean testaRota() {
+        boolean aux = false;
+        if (execucaoRotas.size() == 9) {
+            aux = true;
+        }
+
+        return aux;
     }
 
     @SuppressWarnings("static-access")
