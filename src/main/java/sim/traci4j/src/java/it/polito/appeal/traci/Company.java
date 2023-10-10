@@ -6,6 +6,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 
 public class Company {
+
+    private BotPayment pagamento;
+
     // Quantas threads podem passar pelo semaforo ao mesmo tempo
     private static final Semaphore SEMAFORO = new Semaphore(1);
 

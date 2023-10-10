@@ -73,7 +73,7 @@ public class Car extends Vehicle {
             return null;
         } else {
             for (Vehicle v : veiculos) {
-                if (idCar == v.getID()) {
+                if (v.getID().equals(idCar)) {
                     res = v;
                 }
             }

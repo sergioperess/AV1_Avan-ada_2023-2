@@ -23,10 +23,15 @@ public class Itinerary {
 		this.uriItineraryXML = _uriRoutesXML;
 		this.idItinerary = _idRoute;
 		try {
+			// Produz uma arvore a partir de documentos XML
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			// Utilizado parar criar um documento a partir de um XML
 			DocumentBuilder builder = factory.newDocumentBuilder();
+			// Utilizado para representar todo o documento XML
 			Document doc = builder.parse(this.uriItineraryXML);
+			// Retorna uma coleção ordenada de nós
 			NodeList nList = doc.getElementsByTagName("vehicle");
+
 			for (int i = 0; i < nList.getLength(); i++) {
 				Node nNode = nList.item(i);
 				if (nNode.getNodeType() == Node.ELEMENT_NODE) {
